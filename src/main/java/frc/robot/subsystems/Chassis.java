@@ -40,7 +40,8 @@ public class Chassis extends Subsystem {
     // here. Call these from Commands.
 
     public void driveWithJoystick(F310Controller driveStick) {
-        robotDrive.arcadeDrive(driveStick.getY(Hand.kLeft), -(driveStick.getX(Hand.kRight)), true);
+        //robotDrive.arcadeDrive(driveStick.getY(Hand.kLeft), -(driveStick.getX(Hand.kRight)), true);
+        robotDrive.arcadeDrive(driveStick.getTriggerAxis(Hand.kLeft) - driveStick.getTriggerAxis(Hand.kRight), -(driveStick.getX(Hand.kLeft)), true);
     }
     
     public void autonDriveSystem(double xSpeed, double zRotation) {
