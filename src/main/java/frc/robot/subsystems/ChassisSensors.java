@@ -80,6 +80,35 @@ public class ChassisSensors extends Subsystem {
 		IMU.reset();
 	}
 
+	public void resetEncoders() {
+		leftEncoder.reset();
+		rightEncoder.reset();
+	}
+
+	public double getEncoderDistance(int encoder) {
+		switch(encoder)
+		{
+			case 0:
+				return leftEncoder.getDistance();
+			case 1:
+				return rightEncoder.getDistance();
+			default:
+				return 0.0;
+		}
+	}
+
+	public double getEncoderSpeed(int encoder) {
+        switch(encoder)
+    	{
+    		case 0:
+                return (double) leftEncoder.getRate();
+    		case 1:
+                return (double) rightEncoder.getRate();
+    		default:
+    			return 0.0;
+    	}
+    }
+
 	public void calibrate() {
 		IMU.calibrate();
 	}

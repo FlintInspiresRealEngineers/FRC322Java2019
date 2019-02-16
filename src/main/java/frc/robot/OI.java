@@ -22,6 +22,7 @@ public class OI {
         debugButton = new JoystickButton(driveStick, 3);
         debugButton.toggleWhenPressed(new DebugOutput());
         manipulatorStick = new F310Controller(1);
+        SmartDashboard.putData("ResetEncoders", new ResetEncoders());
     }
 
     public F310Controller getDriveStick() {
@@ -35,9 +36,7 @@ public class OI {
     private void SmartDashboardButtons() {
         SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
         SmartDashboard.putData("Brakes", new Brakes());
-        
         SmartDashboard.putData("ResetEncoders", new ResetEncoders());
-        
         SmartDashboard.putData("DoNothing", new DoNothing());
         SmartDashboard.putData("DriveForward", new DriveForward());
         SmartDashboard.putData("DriveBackward", new DriveBackward());

@@ -25,14 +25,14 @@ public class Chassis extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new DriveWithJoystick());
-        // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
+      // Set the default command for a subsystem here.
+      // setDefaultCommand(new MySpecialCommand());
+      setDefaultCommand(new DriveWithJoystick());
     }
     
     @Override
     public void periodic() {
-        // Put code here to be run every loop
+      // Put code here to be run every loop
     	dashboardUpdater();
     }
 
@@ -40,8 +40,8 @@ public class Chassis extends Subsystem {
     // here. Call these from Commands.
 
     public void driveWithJoystick(F310Controller driveStick) {
-        //robotDrive.arcadeDrive(driveStick.getY(Hand.kLeft), -(driveStick.getX(Hand.kRight)), true);
-        robotDrive.arcadeDrive(driveStick.getTriggerAxis(Hand.kLeft) - driveStick.getTriggerAxis(Hand.kRight), -(driveStick.getX(Hand.kLeft)), true);
+      //robotDrive.arcadeDrive(driveStick.getY(Hand.kLeft), -(driveStick.getX(Hand.kRight)), true);
+      robotDrive.arcadeDrive(driveStick.getTriggerAxis(Hand.kLeft) - driveStick.getTriggerAxis(Hand.kRight), -(driveStick.getX(Hand.kLeft)), true);
     }
     
     public void autonDriveSystem(double xSpeed, double zRotation) {
@@ -54,23 +54,23 @@ public class Chassis extends Subsystem {
 
     public void brakesOn() {
     	leftFrontDriveMotor.setNeutralMode(NeutralMode.Brake);
-        leftRearDriveMotor.setNeutralMode(NeutralMode.Brake);
-        rightFrontDriveMotor.setNeutralMode(NeutralMode.Brake);
-        rightRearDriveMotor.setNeutralMode(NeutralMode.Brake);
+      leftRearDriveMotor.setNeutralMode(NeutralMode.Brake);
+      rightFrontDriveMotor.setNeutralMode(NeutralMode.Brake);
+      rightRearDriveMotor.setNeutralMode(NeutralMode.Brake);
     }
     
     public void brakesOff() {
     	leftFrontDriveMotor.setNeutralMode(NeutralMode.Coast);
-        leftRearDriveMotor.setNeutralMode(NeutralMode.Coast);
-        rightFrontDriveMotor.setNeutralMode(NeutralMode.Coast);
-        rightRearDriveMotor.setNeutralMode(NeutralMode.Coast);
+      leftRearDriveMotor.setNeutralMode(NeutralMode.Coast);
+      rightFrontDriveMotor.setNeutralMode(NeutralMode.Coast);
+      rightRearDriveMotor.setNeutralMode(NeutralMode.Coast);
     }
-    
+/*    
     public void resetEncoders() {
     	leftFrontDriveMotor.getSensorCollection().setQuadraturePosition(0, 0);
     	leftRearDriveMotor.getSensorCollection().setQuadraturePosition(0, 0);
     	rightFrontDriveMotor.getSensorCollection().setQuadraturePosition(0, 0);
-        rightRearDriveMotor.getSensorCollection().setQuadraturePosition(0, 0);
+      rightRearDriveMotor.getSensorCollection().setQuadraturePosition(0, 0);
     }
     
     public void resetEncoders(int encoder) {
@@ -120,7 +120,7 @@ public class Chassis extends Subsystem {
     			return 0.0;
     	}
     }
-
+*/
     public double getEncoderData(int encoder) {
     	switch(encoder)
     	{
@@ -165,9 +165,9 @@ public class Chassis extends Subsystem {
     	//SmartDashboard.putNumber("Left Front Distance: ", (double)this.getEncoderData(0));
     	//SmartDashboard.putNumber("Left Rear Distance: ", (double)this.getEncoderData(1));
     	//SmartDashboard.putNumber("Right Front Distance: ", (double)this.getEncoderData(2));
-        //SmartDashboard.putNumber("Right Rear Distance: ", (double)this.getEncoderData(3));
-        //SmartDashboard.putData("Left Side Drive Motors", leftSideDriveMotors);
-        //SmartDashboard.putData("Right Side Drive Motors", rightSideDriveMotors);
-        SmartDashboard.putData("Chassis", robotDrive);
+      //SmartDashboard.putNumber("Right Rear Distance: ", (double)this.getEncoderData(3));
+      //SmartDashboard.putData("Left Side Drive Motors", leftSideDriveMotors);
+      //SmartDashboard.putData("Right Side Drive Motors", rightSideDriveMotors);
+      SmartDashboard.putData("Chassis", robotDrive);
     }
 }

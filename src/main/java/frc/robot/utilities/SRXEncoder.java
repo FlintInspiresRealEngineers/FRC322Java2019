@@ -33,6 +33,10 @@ public class SRXEncoder extends SendableBase {
     public double getRate() {
       return talon.getSelectedSensorVelocity(talon.getSelectedSensorVelocity());
     }
+
+    public void reset() {
+      talon.getSensorCollection().setQuadraturePosition(0, 0);
+    }
     
     @Override
     public void initSendable(SendableBuilder builder) {
