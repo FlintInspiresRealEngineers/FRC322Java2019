@@ -29,6 +29,13 @@ public class RobotMap {
     public static IMUAccelerometer chassisSensorsIMUAccelerometer;
     public static SRXEncoder chassisSensorsLeftEncoder;
     public static SRXEncoder chassisSensorsRightEncoder;
+    public static WPI_TalonSRX elevatorFrontMotor;
+    public static WPI_TalonSRX elevatorRearMotor;
+    public static SpeedControllerGroup elevatorMotors;
+    public static WPI_TalonSRX manipulatorPivotMotor;
+    public static WPI_TalonSRX manipulatorLeftWheelMotor;
+    public static WPI_TalonSRX manipulatorRightWheelMotor;
+    public static SpeedControllerGroup manipulatorWheelMotors;
 
     public static double autonDistance, autonRotation, autonSpeed, autonTime;
     private static final double WHEEL_DIAMETER = 6.0;
@@ -84,6 +91,18 @@ public class RobotMap {
         
         chassisSensorsIMUAccelerometer = new IMUAccelerometer();
         chassisSensorsIMUAccelerometer.setName("ChassisSensors", "IMUAccelerometer");
+
+        elevatorFrontMotor = new WPI_TalonSRX(5);
+        elevatorRearMotor = new WPI_TalonSRX(6);
+        elevatorMotors = new SpeedControllerGroup(elevatorFrontMotor, elevatorRearMotor);
+        elevatorMotors.setName("Elevator", "ElevatorMotors");
+
+        manipulatorPivotMotor = new WPI_TalonSRX(7);
+        manipulatorPivotMotor.setName("Manipulator", "Pivot");
+        manipulatorLeftWheelMotor = new WPI_TalonSRX(8);
+        manipulatorRightWheelMotor = new WPI_TalonSRX(9);
+        manipulatorWheelMotors = new SpeedControllerGroup(manipulatorLeftWheelMotor, manipulatorRightWheelMotor);
+        manipulatorWheelMotors.setName("Manipulator", "WheelMotors");
 
         RobotMap.autonDistance = 36.0;
         RobotMap.autonSpeed = 0.5;
