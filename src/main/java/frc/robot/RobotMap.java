@@ -43,15 +43,14 @@ public class RobotMap {
     public static SpeedControllerGroup liftMotors;
 
     public static double autonDistance, autonRotation, autonSpeed, autonTime;
-    private static final double WHEEL_DIAMETER = 6.0;
-    public static final double WHEEL_DIAMETER_METRIC = 0.152;   //In Meters for FRC Pathfinder
-	//private static final double CYCLES_PER_REVOLUTION = 1440.0;
+    private static final double WHEEL_DIAMETER = 8.375;
+    public static final double WHEEL_DIAMETER_METRIC = 0.212725;   //In Meters for FRC Pathfinder
 	private static final double ENCODER_GEAR_RATIO = 1.0;
 	private static final double GEAR_RATIO = 1.0;
     private static final double FUDGE_FACTOR = 1.0;
 	public static final double ENCODER_PULSE_DISTANCE = Math.PI * WHEEL_DIAMETER / ENCODER_GEAR_RATIO / GEAR_RATIO * FUDGE_FACTOR;
-    public static final double AXLE_TRACK = 0.559;              //In Meters for FRC Pathfinder
-    public static final double MAX_VELOCITY = 3.8;              //In Meters per Second  ***EDIT (Maybe?)***
+    public static final double AXLE_TRACK = 0.5398;              //In Meters for FRC Pathfinder
+    public static final double MAX_VELOCITY = 1.0;              //In Meters per Second
     
     public static void init() {
         chassisleftFrontDriveMotor = new WPI_TalonSRX(1);
