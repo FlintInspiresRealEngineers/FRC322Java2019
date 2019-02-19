@@ -183,9 +183,7 @@ public class Robot extends TimedRobot {
    	System.out.println("Z-Axis " + chassisSensors.getAccelZ());
    	System.out.println();
    	System.out.println("Left Front Distance " + chassis.getEncoderData(1));
-   	System.out.println("Left Rear Distance " + chassis.getEncoderData(2));
-   	System.out.println("Right Front Distance " + chassis.getEncoderData(3));
-   	System.out.println("Right Rear Distance " + chassis.getEncoderData(4));
+    System.out.println("Right Front Distance " + chassis.getEncoderData(3));
    	System.out.println();
     System.out.println();
   }
