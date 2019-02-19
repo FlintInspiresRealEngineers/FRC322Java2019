@@ -12,13 +12,15 @@ import frc.robot.utilities.F310Controller;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    public JoystickButton brakeButton, debugButton;
+    public JoystickButton brakeButton, liftButton, debugButton;
     public F310Controller driveStick, manipulatorStick;
 
     public OI() {
         driveStick = new F310Controller(0);
         brakeButton = new JoystickButton(driveStick, 2);
         brakeButton.whileHeld(new Brakes());
+        liftButton = new JoystickButton(driveStick, 10);
+        liftButton.whenPressed(new Lifter());
         debugButton = new JoystickButton(driveStick, 3);
         debugButton.toggleWhenPressed(new DebugOutput());
         manipulatorStick = new F310Controller(1);

@@ -38,6 +38,7 @@ public class Robot extends TimedRobot {
   public static Chassis chassis;
   public static ChassisSensors chassisSensors;
   public static Elevator elevator;
+  public static Lift lift;
   public static Manipulator manipulator;
   public static DriverStation DS;
   public static UsbCamera frontCameraServer;
@@ -54,6 +55,7 @@ public class Robot extends TimedRobot {
     chassis = new Chassis();
     chassisSensors = new ChassisSensors();
     elevator = new Elevator();
+    lift = new Lift();
     manipulator = new Manipulator();
     
     // OI must be constructed after subsystems. If the OI creates Commands

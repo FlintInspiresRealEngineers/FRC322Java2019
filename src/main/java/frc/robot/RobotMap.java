@@ -36,6 +36,11 @@ public class RobotMap {
     public static WPI_TalonSRX manipulatorLeftWheelMotor;
     public static WPI_TalonSRX manipulatorRightWheelMotor;
     public static SpeedControllerGroup manipulatorWheelMotors;
+    public static WPI_TalonSRX liftLeftFrontMotor;
+    public static WPI_TalonSRX liftLeftRearMotor;
+    public static WPI_TalonSRX liftRightFrontMotor;
+    public static WPI_TalonSRX liftRightRearMotor;
+    public static SpeedControllerGroup liftMotors;
 
     public static double autonDistance, autonRotation, autonSpeed, autonTime;
     private static final double WHEEL_DIAMETER = 6.0;
@@ -104,6 +109,13 @@ public class RobotMap {
         manipulatorWheelMotors = new SpeedControllerGroup(manipulatorLeftWheelMotor, manipulatorRightWheelMotor);
         manipulatorWheelMotors.setName("Manipulator", "WheelMotors");
 
+        liftLeftFrontMotor = new WPI_TalonSRX(10);
+        liftLeftRearMotor = new WPI_TalonSRX(11);
+        liftRightFrontMotor = new WPI_TalonSRX(12);
+        liftRightRearMotor = new WPI_TalonSRX(13);
+        liftMotors = new SpeedControllerGroup(liftLeftFrontMotor, liftLeftRearMotor, liftRightFrontMotor, liftRightRearMotor);
+        liftMotors.setName("Lift", "LiftMotors");
+        
         RobotMap.autonDistance = 36.0;
         RobotMap.autonSpeed = 0.5;
         RobotMap.autonRotation = 0.0;
