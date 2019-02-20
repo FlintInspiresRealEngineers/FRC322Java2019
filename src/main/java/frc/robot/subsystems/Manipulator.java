@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -21,8 +22,8 @@ import frc.robot.commands.*;
  */
 public class Manipulator extends Subsystem {
   private final WPI_TalonSRX pivotMotor = RobotMap.manipulatorPivotMotor;
-  private final WPI_TalonSRX leftWheelMotor = RobotMap.manipulatorLeftWheelMotor;
-  private final WPI_TalonSRX rightWheelMotor = RobotMap.manipulatorRightWheelMotor;
+  private final WPI_VictorSPX leftWheelMotor = RobotMap.manipulatorLeftWheelMotor;
+  private final WPI_VictorSPX rightWheelMotor = RobotMap.manipulatorRightWheelMotor;
   private final SpeedControllerGroup wheelMotors = RobotMap.manipulatorWheelMotors;
 
   // Put methods for controlling this subsystem
