@@ -1,6 +1,8 @@
 package frc.robot;
 
+import com.ctre.phoenix.CANifier;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -33,9 +35,10 @@ public class RobotMap {
     public static WPI_TalonSRX elevatorRearMotor;
     public static SpeedControllerGroup elevatorMotors;
     public static WPI_TalonSRX manipulatorPivotMotor;
-    public static WPI_TalonSRX manipulatorLeftWheelMotor;
-    public static WPI_TalonSRX manipulatorRightWheelMotor;
+    public static WPI_VictorSPX manipulatorLeftWheelMotor;
+    public static WPI_VictorSPX manipulatorRightWheelMotor;
     public static SpeedControllerGroup manipulatorWheelMotors;
+    public static CANifier ledControlCANifier;
     public static WPI_TalonSRX liftLeftFrontMotor;
     public static WPI_TalonSRX liftLeftRearMotor;
     public static WPI_TalonSRX liftRightFrontMotor;
@@ -51,6 +54,9 @@ public class RobotMap {
 	public static final double ENCODER_PULSE_DISTANCE = Math.PI * WHEEL_DIAMETER / ENCODER_GEAR_RATIO / GEAR_RATIO * FUDGE_FACTOR;
     public static final double AXLE_TRACK = 0.5398;              //In Meters for FRC Pathfinder
     public static final double MAX_VELOCITY = 1.0;              //In Meters per Second
+
+    public static double redInt, greenInt, blueInt;
+    public static long ledBlinkRate;
     
     public static void init() {
         chassisleftFrontDriveMotor = new WPI_TalonSRX(1);
@@ -103,15 +109,22 @@ public class RobotMap {
 
         manipulatorPivotMotor = new WPI_TalonSRX(7);
         manipulatorPivotMotor.setName("Manipulator", "Pivot");
-        manipulatorLeftWheelMotor = new WPI_TalonSRX(8);
-        manipulatorRightWheelMotor = new WPI_TalonSRX(9);
+        manipulatorLeftWheelMotor = new WPI_VictorSPX(0);
+        manipulatorRightWheelMotor = new WPI_VictorSPX(1);
         manipulatorWheelMotors = new SpeedControllerGroup(manipulatorLeftWheelMotor, manipulatorRightWheelMotor);
         manipulatorWheelMotors.setName("Manipulator", "WheelMotors");
 
-        liftLeftFrontMotor = new WPI_TalonSRX(10);
-        liftLeftRearMotor = new WPI_TalonSRX(11);
-        liftRightFrontMotor = new WPI_TalonSRX(12);
-        liftRightRearMotor = new WPI_TalonSRX(13);
+        ledControlCANifier = new CANifier(0);
+
+        redInt = 100.0;
+        greenInt = 100.0;
+        blueInt = 100.0;
+        ledBlinkRate = 500;
+
+        liftLeftFrontMotor = new WPI_TalonSRX(8);
+        liftLeftRearMotor = new WPI_TalonSRX(9);
+        liftRightFrontMotor = new WPI_TalonSRX(10);
+        liftRightRearMotor = new WPI_TalonSRX(11);
         liftMotors = new SpeedControllerGroup(liftLeftFrontMotor, liftLeftRearMotor, liftRightFrontMotor, liftRightRearMotor);
         liftMotors.setName("Lift", "LiftMotors");
         

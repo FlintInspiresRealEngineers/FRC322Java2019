@@ -38,6 +38,7 @@ public class Robot extends TimedRobot {
   public static Chassis chassis;
   public static ChassisSensors chassisSensors;
   public static Elevator elevator;
+  public static LEDControl ledControl;
   public static Lift lift;
   public static Manipulator manipulator;
   public static DriverStation DS;
@@ -55,6 +56,7 @@ public class Robot extends TimedRobot {
     chassis = new Chassis();
     chassisSensors = new ChassisSensors();
     elevator = new Elevator();
+    ledControl = new LEDControl();
     lift = new Lift();
     manipulator = new Manipulator();
     
