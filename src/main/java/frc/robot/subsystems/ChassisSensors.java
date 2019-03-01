@@ -48,6 +48,10 @@ public class ChassisSensors extends Subsystem {
 		return IMU.getAngleZ();
 	}
 
+	public void getRate() {
+		IMU.getRate();
+	}
+	
 	public double getRateX() {
 		return IMU.getRateX();
 	}
@@ -78,6 +82,10 @@ public class ChassisSensors extends Subsystem {
 	
 	public void resetXYZ() {
 		IMU.reset();
+	}
+
+	public void calibrateIMU() {
+		IMU.calibrate();
 	}
 
 	public void resetEncoders() {
