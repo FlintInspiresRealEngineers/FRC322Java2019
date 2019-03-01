@@ -83,6 +83,8 @@ public class Robot extends TimedRobot {
     chooser.addOption("Drive Forward", "Drive Forward");
     chooser.addOption("Drive Backward", "Drive Backward");
     SmartDashboard.putData("Auto mode", chooser);
+    Scheduler.getInstance().add(new InitializeSensors());
+    Scheduler.getInstance().run();
   }
 
   /**

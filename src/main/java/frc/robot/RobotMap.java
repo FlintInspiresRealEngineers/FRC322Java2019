@@ -84,7 +84,6 @@ public class RobotMap {
         chassisSensorspowerDistributionPanel.setName("ChassisSensors", "powerDistributionPanel");
 
         chassisSensorsIMU = new ADIS16470_IMU();
-        chassisSensorsIMU.calibrate();
         chassisSensorsIMU.setName("ChassisSensors", "IMU");
 
         chassisSensorsXGyro = new XGyro();
