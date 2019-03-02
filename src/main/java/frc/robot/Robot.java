@@ -19,6 +19,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -68,16 +71,16 @@ public class Robot extends TimedRobot {
     
     DS = DriverStation.getInstance();
     
-  //Setup Cameras
-  frontCameraServer = CameraServer.getInstance().startAutomaticCapture();
-  frontCameraServer.setResolution(640, 360);
+    //Setup Cameras
+    frontCameraServer = CameraServer.getInstance().startAutomaticCapture();
+    frontCameraServer.setResolution(640, 360);
 
-  rearCameraServer = CameraServer.getInstance().startAutomaticCapture();
-  rearCameraServer.setResolution(640, 360);
+    rearCameraServer = CameraServer.getInstance().startAutomaticCapture();
+    rearCameraServer.setResolution(640, 360);
 
-  //Setup roboPrefs
-  robotPrefs = Preferences.getInstance();
-    
+    //Setup roboPrefs
+    robotPrefs = Preferences.getInstance();
+  
     // Add commands to Autonomous Sendable Chooser
     chooser.setDefaultOption("Do Nothing", "Do Nothing");
     chooser.addOption("Drive Forward", "Drive Forward");
@@ -98,6 +101,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     getRoboPrefs();
+    readLimelight();
+    dashboardOutput();
   }
   
   @Override
@@ -177,7 +182,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Autonomous Time", RobotMap.autonTime);
   }
     
-  public static void debugOutput() {
+  public void debugOutput() {
     System.out.println("Gyro Angle X" + chassisSensors.getAngleX());
 	  System.out.println("Gyro Angle Y" + chassisSensors.getAngleY());
 	  System.out.println("Gyro Angle Z" + chassisSensors.getAngleZ());
@@ -190,5 +195,17 @@ public class Robot extends TimedRobot {
     System.out.println("Right Front Distance " + chassis.getEncoderData(3));
    	System.out.println();
     System.out.println();
+  }
+
+  public void readLimelight() {
+    RobotMap.limelightX = RobotMap.limelighttx.getDouble(0.0);
+    RobotMap.limelightY = RobotMap.limelightty.getDouble(0.0);
+    RobotMap.limelightArea = RobotMap.limelightta.getDouble(0.0);
+  }
+
+  public void dashboardOutput() {
+    SmartDashboard.putNumber("LimelightX", RobotMap.limelightX);
+    SmartDashboard.putNumber("LimelightY", RobotMap.limelightY);
+    SmartDashboard.putNumber("LimelightArea", RobotMap.limelightArea);
   }
 }

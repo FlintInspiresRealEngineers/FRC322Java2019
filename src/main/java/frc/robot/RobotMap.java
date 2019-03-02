@@ -3,6 +3,10 @@ package frc.robot;
 import com.ctre.phoenix.CANifier;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -44,6 +48,12 @@ public class RobotMap {
     public static WPI_TalonSRX liftRightFrontMotor;
     public static WPI_TalonSRX liftRightRearMotor;
     public static SpeedControllerGroup liftMotors;
+
+    public static NetworkTable limelightTable;
+    public static NetworkTableEntry limelighttx;
+    public static NetworkTableEntry limelightty;
+    public static NetworkTableEntry limelightta;
+    public static double limelightX, limelightY, limelightArea;
 
     public static double autonDistance, autonRotation, autonSpeed, autonTime;
     private static final double WHEEL_DIAMETER = 8.375;
@@ -126,6 +136,15 @@ public class RobotMap {
         liftRightRearMotor = new WPI_TalonSRX(11);
         liftMotors = new SpeedControllerGroup(liftLeftFrontMotor, liftLeftRearMotor, liftRightFrontMotor, liftRightRearMotor);
         liftMotors.setName("Lift", "LiftMotors");
+
+        limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
+        limelighttx = limelightTable.getEntry("tx");
+        limelightty = limelightTable.getEntry("ty");
+        limelightta = limelightTable.getEntry("ta");
+
+        limelightX = 0.0;
+        limelightY = 0.0;
+        limelightArea = 0.0;
         
         RobotMap.autonDistance = 36.0;
         RobotMap.autonSpeed = 0.5;
