@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.buttons.InternalButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -35,18 +36,21 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
   Command autonomousCommand;
   SendableChooser<String> chooser = new SendableChooser<>();
-  Preferences robotPrefs;
 
   public static OI oi;
   public static Chassis chassis;
   public static ChassisSensors chassisSensors;
+  public static Dashboard dashboard;
+  public static Debugger debugger;
   public static Elevator elevator;
   public static LEDControl ledControl;
   public static Lift lift;
+  public static Limelight limelight;
   public static Manipulator manipulator;
   public static DriverStation DS;
   public static UsbCamera frontCameraServer;
   public static UsbCamera rearCameraServer;
+  public InternalButton getRoboPrefsButton, readLimelightButton, initializeDashboardButton, dashboardOutputButton;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -58,9 +62,12 @@ public class Robot extends TimedRobot {
 
     chassis = new Chassis();
     chassisSensors = new ChassisSensors();
+    dashboard = new Dashboard();
+    debugger = new Debugger();
     elevator = new Elevator();
     ledControl = new LEDControl();
     lift = new Lift();
+    limelight = new Limelight();
     manipulator = new Manipulator();
     
     // OI must be constructed after subsystems. If the OI creates Commands
@@ -70,7 +77,21 @@ public class Robot extends TimedRobot {
     oi = new OI();
     
     DS = DriverStation.getInstance();
-    
+
+    //Setup InternalButtons
+    getRoboPrefsButton = new InternalButton();
+    readLimelightButton = new InternalButton();
+    initializeDashboardButton = new InternalButton();
+    dashboardOutputButton = new InternalButton();
+
+    getRoboPrefsButton.setPressed(true);
+    getRoboPrefsButton.whenActive(new GetRoboPrefs());
+    getRoboPrefsButton.setPressed(false);
+
+    initializeDashboardButton.setPressed(true);
+    initializeDashboardButton.whenActive(new InitializeDashboard());
+    initializeDashboardButton.setPressed(false);
+
     //Setup Cameras
     frontCameraServer = CameraServer.getInstance().startAutomaticCapture();
     frontCameraServer.setResolution(640, 360);
@@ -78,9 +99,6 @@ public class Robot extends TimedRobot {
     rearCameraServer = CameraServer.getInstance().startAutomaticCapture();
     rearCameraServer.setResolution(640, 360);
 
-    //Setup roboPrefs
-    robotPrefs = Preferences.getInstance();
-  
     // Add commands to Autonomous Sendable Chooser
     chooser.setDefaultOption("Do Nothing", "Do Nothing");
     chooser.addOption("Drive Forward", "Drive Forward");
@@ -100,9 +118,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    getRoboPrefs();
-    readLimelight();
-    dashboardOutput();
+    getRoboPrefsButton.setPressed(true);
+    getRoboPrefsButton.whenActive(new GetRoboPrefs());
+    getRoboPrefsButton.setPressed(false);
+    readLimelightButton.setPressed(true);
+    readLimelightButton.whenActive(new ReadLimelight());
+    readLimelightButton.setPressed(false);
+    dashboardOutputButton.setPressed(true);
+    dashboardOutputButton.whenActive(new DashboardOutput());
+    dashboardOutputButton.setPressed(false);
   }
   
   @Override
@@ -120,7 +144,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    getRoboPrefs();
     switch (chooser.getSelected()) {
       case "Do Nothing":				  autonomousCommand = new DoNothing();
       break;
@@ -169,43 +192,5 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-  }
-  
-	public void getRoboPrefs() {
-		RobotMap.autonDistance = robotPrefs.getDouble("Autonomous Distance", RobotMap.autonDistance);
-		RobotMap.autonSpeed = robotPrefs.getDouble("Autonomous Speed", RobotMap.autonSpeed);
-		RobotMap.autonRotation = robotPrefs.getDouble("Autonomous Rotation", RobotMap.autonRotation);
-    RobotMap.autonTime = robotPrefs.getDouble("Autonomous Time", RobotMap.autonTime);
-    SmartDashboard.putNumber("Autonomous Speed", RobotMap.autonSpeed);
-    SmartDashboard.putNumber("Autonomous Rotation", RobotMap.autonRotation);
-    SmartDashboard.putNumber("Autonomous Distance", RobotMap.autonDistance);
-    SmartDashboard.putNumber("Autonomous Time", RobotMap.autonTime);
-  }
-    
-  public void debugOutput() {
-    System.out.println("Gyro Angle X" + chassisSensors.getAngleX());
-	  System.out.println("Gyro Angle Y" + chassisSensors.getAngleY());
-	  System.out.println("Gyro Angle Z" + chassisSensors.getAngleZ());
-   	System.out.println();
-   	System.out.println("X-Axis " + chassisSensors.getAccelX());
-   	System.out.println("Y-Axis " + chassisSensors.getAccelY());
-   	System.out.println("Z-Axis " + chassisSensors.getAccelZ());
-   	System.out.println();
-   	System.out.println("Left Front Distance " + chassis.getEncoderData(1));
-    System.out.println("Right Front Distance " + chassis.getEncoderData(3));
-   	System.out.println();
-    System.out.println();
-  }
-
-  public void readLimelight() {
-    RobotMap.limelightX = RobotMap.limelighttx.getDouble(0.0);
-    RobotMap.limelightY = RobotMap.limelightty.getDouble(0.0);
-    RobotMap.limelightArea = RobotMap.limelightta.getDouble(0.0);
-  }
-
-  public void dashboardOutput() {
-    SmartDashboard.putNumber("LimelightX", RobotMap.limelightX);
-    SmartDashboard.putNumber("LimelightY", RobotMap.limelightY);
-    SmartDashboard.putNumber("LimelightArea", RobotMap.limelightArea);
   }
 }

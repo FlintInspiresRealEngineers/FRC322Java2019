@@ -8,6 +8,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.analog.adis16470.frc.*;
@@ -48,6 +49,8 @@ public class RobotMap {
     public static WPI_TalonSRX liftRightFrontMotor;
     public static WPI_TalonSRX liftRightRearMotor;
     public static SpeedControllerGroup liftMotors;
+
+    public static Preferences dashboardRobotPrefs;
 
     public static NetworkTable limelightTable;
     public static NetworkTableEntry limelighttx;
@@ -136,6 +139,8 @@ public class RobotMap {
         liftRightRearMotor = new WPI_TalonSRX(11);
         liftMotors = new SpeedControllerGroup(liftLeftFrontMotor, liftLeftRearMotor, liftRightFrontMotor, liftRightRearMotor);
         liftMotors.setName("Lift", "LiftMotors");
+
+        dashboardRobotPrefs = Preferences.getInstance();
 
         limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
         limelighttx = limelightTable.getEntry("tx");

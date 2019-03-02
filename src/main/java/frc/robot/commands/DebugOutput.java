@@ -9,6 +9,7 @@ import frc.robot.Robot;
 public class DebugOutput extends Command {
 
     public DebugOutput() {
+        requires(Robot.debugger);
     }
 
     // Called just before this Command runs the first time
@@ -19,7 +20,7 @@ public class DebugOutput extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.debugOutput();
+        Robot.debugger.debugOutput();
     }
 
     // Make this return true when this Command no longer needs to run execute()

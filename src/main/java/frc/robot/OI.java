@@ -2,7 +2,7 @@ package frc.robot;
 
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.buttons.*;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.subsystems.*;
 import frc.robot.utilities.F310Controller;
 
@@ -18,9 +18,9 @@ public class OI {
     public OI() {
         driveStick = new F310Controller(0);
         brakeButton = new JoystickButton(driveStick, 2);
-        brakeButton.whileHeld(new Brakes());
+        brakeButton.whileActive(new Brakes());
         liftButton = new JoystickButton(driveStick, 10);
-        liftButton.whenPressed(new Lifter());
+        liftButton.whileActive(new Lifter());
         debugButton = new JoystickButton(driveStick, 3);
         debugButton.toggleWhenPressed(new DebugOutput());
         manipulatorStick = new F310Controller(1);
@@ -34,15 +34,5 @@ public class OI {
 
     public F310Controller getManipulatorStick() {
         return manipulatorStick;
-    }
-
-    private void SmartDashboardButtons() {
-        SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
-        SmartDashboard.putData("Brakes", new Brakes());
-        SmartDashboard.putData("ResetEncoders", new ResetEncoders());
-        SmartDashboard.putData("ResetGyro", new ResetGyro());
-        SmartDashboard.putData("DoNothing", new DoNothing());
-        SmartDashboard.putData("DriveForward", new DriveForward());
-        SmartDashboard.putData("DriveBackward", new DriveBackward());
     }
 }
