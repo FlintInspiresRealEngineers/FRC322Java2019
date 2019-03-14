@@ -1,5 +1,6 @@
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.CANifier;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -115,14 +116,19 @@ public class RobotMap {
         chassisSensorsIMUAccelerometer.setName("ChassisSensors", "IMUAccelerometer");
 
         elevatorFrontMotor = new WPI_TalonSRX(5);
+        elevatorFrontMotor.setNeutralMode(NeutralMode.Brake);
         elevatorRearMotor = new WPI_TalonSRX(6);
+        elevatorRearMotor.setNeutralMode(NeutralMode.Brake);
         elevatorMotors = new SpeedControllerGroup(elevatorFrontMotor, elevatorRearMotor);
         elevatorMotors.setName("Elevator", "ElevatorMotors");
 
         manipulatorPivotMotor = new WPI_TalonSRX(7);
+        manipulatorPivotMotor.setNeutralMode(NeutralMode.Brake);
         manipulatorPivotMotor.setName("Manipulator", "Pivot");
-        manipulatorLeftWheelMotor = new WPI_VictorSPX(0);
-        manipulatorRightWheelMotor = new WPI_VictorSPX(1);
+        manipulatorLeftWheelMotor = new WPI_VictorSPX(1);
+        manipulatorLeftWheelMotor.setNeutralMode(NeutralMode.Coast);
+        manipulatorRightWheelMotor = new WPI_VictorSPX(2);
+        manipulatorRightWheelMotor.setNeutralMode(NeutralMode.Coast);
         manipulatorWheelMotors = new SpeedControllerGroup(manipulatorLeftWheelMotor, manipulatorRightWheelMotor);
         manipulatorWheelMotors.setName("Manipulator", "WheelMotors");
 
@@ -132,11 +138,15 @@ public class RobotMap {
         greenInt = 100.0;
         blueInt = 100.0;
         ledBlinkRate = 500;
-
+        
         liftLeftFrontMotor = new WPI_TalonSRX(8);
+        liftLeftFrontMotor.setNeutralMode(NeutralMode.Brake);
         liftLeftRearMotor = new WPI_TalonSRX(9);
+        liftLeftRearMotor.setNeutralMode(NeutralMode.Brake);
         liftRightFrontMotor = new WPI_TalonSRX(10);
+        liftRightFrontMotor.setNeutralMode(NeutralMode.Brake);
         liftRightRearMotor = new WPI_TalonSRX(11);
+        liftRightRearMotor.setNeutralMode(NeutralMode.Brake);
         liftMotors = new SpeedControllerGroup(liftLeftFrontMotor, liftLeftRearMotor, liftRightFrontMotor, liftRightRearMotor);
         liftMotors.setName("Lift", "LiftMotors");
 
