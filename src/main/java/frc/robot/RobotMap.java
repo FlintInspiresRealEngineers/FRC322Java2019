@@ -125,6 +125,7 @@ public class RobotMap {
         manipulatorPivotMotor = new WPI_TalonSRX(7);
         manipulatorPivotMotor.setNeutralMode(NeutralMode.Brake);
         manipulatorPivotMotor.setName("Manipulator", "Pivot");
+        
         manipulatorLeftWheelMotor = new WPI_VictorSPX(1);
         manipulatorLeftWheelMotor.setNeutralMode(NeutralMode.Coast);
         manipulatorRightWheelMotor = new WPI_VictorSPX(2);
