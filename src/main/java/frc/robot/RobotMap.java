@@ -89,7 +89,7 @@ public class RobotMap {
         
         chassisrobotDrive = new DifferentialDrive(chassisleftSideDriveMotors, chassisrightSideDriveMotors);
         chassisrobotDrive.setSafetyEnabled(true);
-        chassisrobotDrive.setExpiration(2.5);
+        chassisrobotDrive.setExpiration(5.0);
         chassisrobotDrive.setMaxOutput(1.0);
         chassisrobotDrive.setName("Chassis", "robotDrive");
 
