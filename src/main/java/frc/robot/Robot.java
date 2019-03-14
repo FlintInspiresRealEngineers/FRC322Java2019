@@ -48,7 +48,6 @@ public class Robot extends TimedRobot {
   public static Limelight limelight;
   public static Manipulator manipulator;
   public static DriverStation DS;
-  public static UsbCamera frontCameraServer;
   public static UsbCamera rearCameraServer;
   public InternalButton getRoboPrefsButton, readLimelightButton, initializeDashboardButton, dashboardOutputButton;
 
@@ -92,12 +91,10 @@ public class Robot extends TimedRobot {
     initializeDashboardButton.whenActive(new InitializeDashboard());
     initializeDashboardButton.setPressed(false);
 
-    //Setup Cameras
-    frontCameraServer = CameraServer.getInstance().startAutomaticCapture();
-    frontCameraServer.setResolution(640, 360);
-
+    //Setup Camera
     rearCameraServer = CameraServer.getInstance().startAutomaticCapture();
-    rearCameraServer.setResolution(640, 360);
+    rearCameraServer.setResolution(320, 180);
+    rearCameraServer.setFPS(15);
 
     // Add commands to Autonomous Sendable Chooser
     chooser.setDefaultOption("Do Nothing", "Do Nothing");
