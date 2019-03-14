@@ -29,7 +29,7 @@ public class Manipulator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public void pivot(F310Controller f310) {
-    pivotMotor.set(f310.getY(Hand.kLeft));
+    pivotMotor.set(0.75 * (f310.getY(Hand.kLeft)));
   }
 
   public void suckBalls() {
