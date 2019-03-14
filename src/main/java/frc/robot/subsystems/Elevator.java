@@ -26,7 +26,7 @@ public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public void moveElevator(F310Controller f310) {
-    elevatorMotors.set(f310.getY(Hand.kRight));
+    elevatorMotors.set(0.5 * (f310.getY(Hand.kRight)));
   }
 
   public void stopElevator() {

@@ -11,18 +11,11 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
-import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.buttons.InternalButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -39,13 +32,8 @@ public class Robot extends TimedRobot {
 
   public static OI oi;
   public static Chassis chassis;
-  public static ChassisSensors chassisSensors;
-  public static Dashboard dashboard;
-  public static Debugger debugger;
   public static Elevator elevator;
-  public static LEDControl ledControl;
   public static Lift lift;
-  public static Limelight limelight;
   public static Manipulator manipulator;
   public static DriverStation DS;
   public static UsbCamera frontCameraServer;
@@ -61,13 +49,8 @@ public class Robot extends TimedRobot {
     RobotMap.init();
 
     chassis = new Chassis();
-    chassisSensors = new ChassisSensors();
-    dashboard = new Dashboard();
-    debugger = new Debugger();
     elevator = new Elevator();
-    ledControl = new LEDControl();
     lift = new Lift();
-    limelight = new Limelight();
     manipulator = new Manipulator();
     
     // OI must be constructed after subsystems. If the OI creates Commands
@@ -84,27 +67,18 @@ public class Robot extends TimedRobot {
     initializeDashboardButton = new InternalButton();
     dashboardOutputButton = new InternalButton();
 
-    getRoboPrefsButton.setPressed(true);
-    getRoboPrefsButton.whenActive(new GetRoboPrefs());
-    getRoboPrefsButton.setPressed(false);
-
-    initializeDashboardButton.setPressed(true);
-    initializeDashboardButton.whenActive(new InitializeDashboard());
-    initializeDashboardButton.setPressed(false);
-
     //Setup Cameras
     frontCameraServer = CameraServer.getInstance().startAutomaticCapture();
-    frontCameraServer.setResolution(640, 360);
+    frontCameraServer.setResolution(320, 240);
 
     rearCameraServer = CameraServer.getInstance().startAutomaticCapture();
-    rearCameraServer.setResolution(640, 360);
+    rearCameraServer.setResolution(160, 120);
 
     // Add commands to Autonomous Sendable Chooser
     chooser.setDefaultOption("Do Nothing", "Do Nothing");
     chooser.addOption("Drive Forward", "Drive Forward");
     chooser.addOption("Drive Backward", "Drive Backward");
     SmartDashboard.putData("Auto mode", chooser);
-    Scheduler.getInstance().add(new InitializeSensors());
     Scheduler.getInstance().run();
   }
 
@@ -118,15 +92,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    getRoboPrefsButton.setPressed(true);
-    getRoboPrefsButton.whenActive(new GetRoboPrefs());
-    getRoboPrefsButton.setPressed(false);
-    readLimelightButton.setPressed(true);
-    readLimelightButton.whenActive(new ReadLimelight());
-    readLimelightButton.setPressed(false);
-    dashboardOutputButton.setPressed(true);
-    dashboardOutputButton.whenActive(new DashboardOutput());
-    dashboardOutputButton.setPressed(false);
+    //readLimelightButton.setPressed(true);
+    //readLimelightButton.whenActive(new ReadLimelight());
+    //readLimelightButton.setPressed(false);
+    //dashboardOutputButton.setPressed(true);
+    //dashboardOutputButton.whenActive(new DashboardOutput());
+    //dashboardOutputButton.setPressed(false);
   }
   
   @Override
@@ -146,12 +117,6 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     switch (chooser.getSelected()) {
       case "Do Nothing":				  autonomousCommand = new DoNothing();
-      break;
-      
-      case "Drive Forward":			  autonomousCommand = new DriveForward();
-      break;
-      
-      case "Drive Backward":			autonomousCommand = new DriveBackward();
       break;
           
       default: 						        autonomousCommand = new DoNothing();

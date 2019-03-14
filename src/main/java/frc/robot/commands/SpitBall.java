@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class BallHandler extends Command {
-  public BallHandler() {
+public class SpitBall extends Command {
+  public SpitBall() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.manipulator);
@@ -25,12 +25,7 @@ public class BallHandler extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.oi.getManipulatorStick().getXButton())
-      Robot.manipulator.suckBalls();
-    else if(Robot.oi.getManipulatorStick().getYButton())
-      Robot.manipulator.spitBalls();
-    else
-      Robot.manipulator.stopBallHandler();
+    Robot.manipulator.spitBalls();
   }
 
   // Make this return true when this Command no longer needs to run execute()

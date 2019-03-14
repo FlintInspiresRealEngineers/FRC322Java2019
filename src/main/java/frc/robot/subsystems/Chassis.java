@@ -33,7 +33,7 @@ public class Chassis extends Subsystem {
     @Override
     public void periodic() {
       // Put code here to be run every loop
-    	dashboardUpdater();
+      dashboardUpdater();   
     }
 
     // Put methods for controlling this subsystem
@@ -121,25 +121,6 @@ public class Chassis extends Subsystem {
     	}
     }
 */
-    public double getEncoderData(int encoder) {
-    	switch(encoder)
-    	{
-    		case 0:
-    			return (RobotMap.ENCODER_PULSE_DISTANCE / leftFrontDriveMotor.getSensorCollection().getQuadraturePosition());
-    		
-    		case 1:
-    			return (RobotMap.ENCODER_PULSE_DISTANCE / leftRearDriveMotor.getSensorCollection().getQuadraturePosition());
-    		
-    		case 2:
-    			return (RobotMap.ENCODER_PULSE_DISTANCE / rightFrontDriveMotor.getSensorCollection().getQuadraturePosition());
-    		
-    		case 3:
-    			return (RobotMap.ENCODER_PULSE_DISTANCE / rightRearDriveMotor.getSensorCollection().getQuadraturePosition());
-    		
-    		default:
-    			return 0.0;
-    	}
-    }
 
     public int getRawEncoderData(int encoder) {
     	switch(encoder)

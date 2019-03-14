@@ -10,13 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class InitializeSensors extends Command {
-  private static boolean finished = false;
-
-  public InitializeSensors() {
+public class SuckBall extends Command {
+  public SuckBall() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.chassisSensors);
+    requires(Robot.manipulator);
   }
 
   // Called just before this Command runs the first time
@@ -27,21 +25,19 @@ public class InitializeSensors extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.chassisSensors.resetXYZ();
-    Robot.chassisSensors.resetEncoders();
-    Robot.chassisSensors.calibrateIMU();
-    finished = true;
+    Robot.manipulator.suckBalls();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return finished;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.manipulator.stopBallHandler();
   }
 
   // Called when another command which requires one or more of the same
