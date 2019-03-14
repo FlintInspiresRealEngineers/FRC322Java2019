@@ -98,8 +98,6 @@ public class Robot extends TimedRobot {
 
     // Add commands to Autonomous Sendable Chooser
     chooser.setDefaultOption("Do Nothing", "Do Nothing");
-    chooser.addOption("Drive Forward", "Drive Forward");
-    chooser.addOption("Drive Backward", "Drive Backward");
     SmartDashboard.putData("Auto mode", chooser);
     Scheduler.getInstance().add(new InitializeSensors());
     Scheduler.getInstance().run();
@@ -142,16 +140,10 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     switch (chooser.getSelected()) {
-      case "Do Nothing":				  autonomousCommand = new DoNothing();
+      case "Do Nothing":  autonomousCommand = new DoNothing();
       break;
       
-      case "Drive Forward":			  autonomousCommand = new DriveForward();
-      break;
-      
-      case "Drive Backward":			autonomousCommand = new DriveBackward();
-      break;
-          
-      default: 						        autonomousCommand = new DoNothing();
+      default:            autonomousCommand = new DoNothing();
       break;
     }
     

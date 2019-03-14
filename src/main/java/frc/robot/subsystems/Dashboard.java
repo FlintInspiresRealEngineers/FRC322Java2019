@@ -37,8 +37,6 @@ public class Dashboard extends Subsystem {
     SmartDashboard.putData("ResetEncoders", new ResetEncoders());
     SmartDashboard.putData("ResetGyro", new ResetGyro());
     SmartDashboard.putData("DoNothing", new DoNothing());
-    SmartDashboard.putData("DriveForward", new DriveForward());
-    SmartDashboard.putData("DriveBackward", new DriveBackward());
   }
 
   public void dashboardOutput() {
