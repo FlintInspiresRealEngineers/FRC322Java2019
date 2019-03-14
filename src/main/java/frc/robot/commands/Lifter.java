@@ -26,7 +26,7 @@ public class Lifter extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.lift.setLift(Robot.oi.getDriveStick().getY(Hand.kRight));
+    Robot.lift.setLift(Robot.oi.getDriveStick());
   }
 
   // Make this return true when this Command no longer needs to run execute()

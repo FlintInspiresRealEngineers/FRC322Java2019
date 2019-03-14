@@ -8,10 +8,11 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.utilities.F310Controller;
 
 /**
  * This class defines the robot lifting mechanism.
@@ -37,8 +38,8 @@ public class Lift extends Subsystem {
     liftMotors.set(0.0);
   }
 
-  public void setLift(double speed) {
-    liftMotors.set(speed);
+  public void setLift(F310Controller controller) {
+    liftMotors.set(controller.getY(Hand.kRight));
   }
 
   @Override
