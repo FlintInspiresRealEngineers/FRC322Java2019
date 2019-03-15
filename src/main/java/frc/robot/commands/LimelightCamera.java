@@ -26,6 +26,7 @@ public class LimelightCamera extends Command {
   @Override
   protected void execute() {
     Robot.limelight.setCamMode(1);
+    Robot.limelight.setPipeline(9);
   }
 
   // Make this return true when this Command no longer needs to run execute()
