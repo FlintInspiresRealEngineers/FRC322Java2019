@@ -49,8 +49,7 @@ public class Robot extends TimedRobot {
   public static Manipulator manipulator;
   public static DriverStation DS;
   public static UsbCamera rearCameraServer;
-  public InternalButton getRoboPrefsButton, readLimelightButton, initializeDashboardButton, dashboardOutputButton;
-
+  
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -77,20 +76,6 @@ public class Robot extends TimedRobot {
     
     DS = DriverStation.getInstance();
 
-    //Setup InternalButtons
-    getRoboPrefsButton = new InternalButton();
-    readLimelightButton = new InternalButton();
-    initializeDashboardButton = new InternalButton();
-    dashboardOutputButton = new InternalButton();
-
-    getRoboPrefsButton.setPressed(true);
-    getRoboPrefsButton.whenActive(new GetRoboPrefs());
-    getRoboPrefsButton.setPressed(false);
-
-    initializeDashboardButton.setPressed(true);
-    initializeDashboardButton.whenActive(new InitializeDashboard());
-    initializeDashboardButton.setPressed(false);
-
     //Setup Camera
     rearCameraServer = CameraServer.getInstance().startAutomaticCapture();
     rearCameraServer.setResolution(320, 180);
@@ -99,6 +84,8 @@ public class Robot extends TimedRobot {
     // Add commands to Autonomous Sendable Chooser
     chooser.setDefaultOption("Do Nothing", "Do Nothing");
     SmartDashboard.putData("Auto mode", chooser);
+
+    Scheduler.getInstance().add(new InitializeDashboard());
     Scheduler.getInstance().add(new InitializeSensors());
     Scheduler.getInstance().run();
   }
@@ -113,15 +100,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    getRoboPrefsButton.setPressed(true);
-    getRoboPrefsButton.whenActive(new GetRoboPrefs());
-    getRoboPrefsButton.setPressed(false);
-    readLimelightButton.setPressed(true);
-    readLimelightButton.whenActive(new ReadLimelight());
-    readLimelightButton.setPressed(false);
-    dashboardOutputButton.setPressed(true);
-    dashboardOutputButton.whenActive(new DashboardOutput());
-    dashboardOutputButton.setPressed(false);
+    //Scheduler.getInstance().add(new GetRoboPrefs());
+    Scheduler.getInstance().add(new ReadLimelight());
+    Scheduler.getInstance().add(new DashboardOutput());
+    Scheduler.getInstance().run();
   }
   
   @Override
