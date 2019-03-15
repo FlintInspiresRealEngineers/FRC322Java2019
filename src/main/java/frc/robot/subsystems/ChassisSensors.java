@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
 import frc.robot.commands.*;
-import com.analog.adis16470.frc.*;
+import com.analog.adis16448.frc.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,7 +14,7 @@ import frc.robot.utilities.*;
  */
 public class ChassisSensors extends Subsystem {
     private final PowerDistributionPanel powerDistributionPanel = RobotMap.chassisSensorspowerDistributionPanel;
-	private final ADIS16470_IMU IMU = RobotMap.chassisSensorsIMU;
+	private final ADIS16448_IMU IMU = RobotMap.chassisSensorsIMU;
 	private final XGyro XGyro = RobotMap.chassisSensorsXGyro;
 	private final YGyro YGyro = RobotMap.chassisSensorsYGyro;
 	private final ZGyro ZGyro = RobotMap.chassisSensorsZGyro;

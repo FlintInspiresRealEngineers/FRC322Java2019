@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import com.analog.adis16470.frc.*;
+import com.analog.adis16448.frc.*;
 import frc.robot.utilities.*;
 
 /**
@@ -30,7 +30,7 @@ public class RobotMap {
     public static SpeedControllerGroup chassisrightSideDriveMotors;
     public static DifferentialDrive chassisrobotDrive;
     public static PowerDistributionPanel chassisSensorspowerDistributionPanel;
-    public static ADIS16470_IMU chassisSensorsIMU;
+    public static ADIS16448_IMU chassisSensorsIMU;
     public static XGyro chassisSensorsXGyro;
     public static YGyro chassisSensorsYGyro;
     public static ZGyro chassisSensorsZGyro;
@@ -97,7 +97,7 @@ public class RobotMap {
         chassisSensorspowerDistributionPanel = new PowerDistributionPanel(0);
         chassisSensorspowerDistributionPanel.setName("ChassisSensors", "powerDistributionPanel");
 
-        chassisSensorsIMU = new ADIS16470_IMU();
+        chassisSensorsIMU = new ADIS16448_IMU();
         chassisSensorsIMU.setName("ChassisSensors", "IMU");
 
         chassisSensorsXGyro = new XGyro();
