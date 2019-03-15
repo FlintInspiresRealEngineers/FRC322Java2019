@@ -87,6 +87,7 @@ public class Robot extends TimedRobot {
 
     Scheduler.getInstance().add(new InitializeDashboard());
     Scheduler.getInstance().add(new InitializeSensors());
+    Scheduler.getInstance().add(new LimelightCamera());
     Scheduler.getInstance().run();
   }
 

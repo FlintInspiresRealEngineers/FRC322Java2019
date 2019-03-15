@@ -25,6 +25,19 @@ public class Limelight extends Subsystem {
     RobotMap.limelightArea = RobotMap.limelightta.getDouble(0.0);
   }
 
+  public void setCamMode(int mode) {
+    switch (mode) {
+      case 0:   RobotMap.limelightTable.getEntry("camMode").setNumber(0);
+      break;
+      
+      case 1:   RobotMap.limelightTable.getEntry("camMode").setNumber(1);
+      break;
+
+      default:  RobotMap.limelightTable.getEntry("camMode").setNumber(0);
+      break;
+    }
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
