@@ -1,12 +1,15 @@
 package frc.robot.utilities;
 
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
-import edu.wpi.first.wpilibj.ADXL345_I2C;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import frc.robot.Robot;
 
+//import edu.wpi.first.wpilibj.ADXL345_I2C;
+
+//This is a custom class written to convert the three-axis accelerometer found
+//in an IMU into a 3AxisAccelerometer object as recognized by WPILib
 public class IMUAccelerometer extends SendableBase implements Accelerometer {
     public void setRange(Range range) {
         Robot.chassisSensors.setRange(range);
