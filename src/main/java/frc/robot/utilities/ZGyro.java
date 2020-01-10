@@ -19,4 +19,6 @@ public class ZGyro extends GyroBase {
     public double getRate() {
         return Robot.chassisSensors.getRateZ();
     }
+    
+    public void close() {}
 }
