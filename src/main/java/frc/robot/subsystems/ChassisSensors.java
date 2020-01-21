@@ -37,15 +37,15 @@ public class ChassisSensors extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public double getAngleX() {
-		return IMU.getAngleX();
+		return IMU.getGyroAngleX();
 	}
 
 	public double getAngleY() {
-		return IMU.getAngleY();
+		return IMU.getGyroAngleY();
 	}
 
 	public double getAngleZ() {
-		return IMU.getAngleZ();
+		return IMU.getGyroAngleZ();
 	}
 
 	public void getRate() {
@@ -53,27 +53,27 @@ public class ChassisSensors extends Subsystem {
 	}
 	
 	public double getRateX() {
-		return IMU.getRateX();
+		return IMU.getGyroInstantX();
 	}
 
 	public double getRateY() {
-		return IMU.getRateY();
+		return IMU.getGyroInstantY();
 	}
 
 	public double getRateZ() {
-		return IMU.getRateZ();
+		return IMU.getGyroInstantZ();
 	}
 
 	public double getAccelX() {
-	    return IMU.getAccelX();
+	    return IMU.getAccelInstantX();
 	}
 
 	public double getAccelY() {
-	    return IMU.getAccelY();
+	    return IMU.getAccelInstantY();
 	}
 
 	public double getAccelZ() {
-	    return IMU.getAccelZ();
+	    return IMU.getAccelInstantZ();
 	}
 
 	public double getTemperature() {

@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import com.analog.adis16448.frc.*;
+import com.analog.adis16448.frc.ADIS16448_IMU;
 import frc.robot.utilities.*;
 
 /**
