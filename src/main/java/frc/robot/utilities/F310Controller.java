@@ -1,8 +1,8 @@
 package frc.robot.utilities;
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
+import edu.wpi.first.wpilibj.GenericHID;
 
 /**
  * Handle input from Logitech F310 controllers connected to the Driver Station.

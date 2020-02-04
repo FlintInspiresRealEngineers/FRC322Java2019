@@ -1,6 +1,7 @@
 package frc.robot.utilities;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;    
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 

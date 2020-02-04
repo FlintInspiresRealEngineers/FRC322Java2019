@@ -1,8 +1,8 @@
 package frc.robot.utilities;
 
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.SendableBase;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import frc.robot.Robot;
 

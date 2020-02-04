@@ -1,9 +1,11 @@
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.phoenix.CANifier;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -11,8 +13,11 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import com.analog.adis16448.frc.ADIS16448_IMU;
-import frc.robot.utilities.*;
+import frc.robot.utilities.IMUAccelerometer;
+import frc.robot.utilities.SRXEncoder;
+import frc.robot.utilities.XGyro;
+import frc.robot.utilities.YGyro;
+import frc.robot.utilities.ZGyro;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into

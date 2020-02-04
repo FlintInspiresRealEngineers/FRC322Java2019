@@ -10,8 +10,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.Robot;
-import frc.robot.commands.*;
+import frc.robot.commands.Brakes;
+import frc.robot.commands.DashboardOutput;
+import frc.robot.commands.DoNothing;
+import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.ResetEncoders;
+import frc.robot.commands.ResetGyro;
 
 /**
  * This subsystem describes a portion of the controls for the dashboard.

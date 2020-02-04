@@ -1,13 +1,17 @@
 package frc.robot.subsystems;
 
-import frc.robot.RobotMap;
-import frc.robot.commands.*;
-import com.analog.adis16448.frc.*;
+import com.analog.adis16448.frc.ADIS16448_IMU;
+
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import frc.robot.utilities.*;
+import frc.robot.RobotMap;
+import frc.robot.utilities.IMUAccelerometer;
+import frc.robot.utilities.SRXEncoder;
+import frc.robot.utilities.XGyro;
+import frc.robot.utilities.YGyro;
+import frc.robot.utilities.ZGyro;
 
 /**
  * This class defines sensors on the chassis.
